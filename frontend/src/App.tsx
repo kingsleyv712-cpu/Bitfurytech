@@ -13,57 +13,49 @@ import AuthPanel from './components/AuthPanel'
 import DashboardView from './components/DashboardView'
 import FAQ from './components/FAQ'
 import ContactFooter from './components/ContactFooter'
-import { getApiHealth } from './services/api'
 
 function App() {
-  const [backendStatus, setBackendStatus] = useState('Checking backend...')
   const [language, setLanguage] = useState<'en' | 'fr'>('en')
   const [activeUser, setActiveUser] = useState<{ name: string; email: string } | null>(() => {
     if (typeof window === 'undefined') return null
     const saved = window.localStorage.getItem('bitfurytech-user')
     return saved ? JSON.parse(saved) : null
   })
+  const [currentRoute, setCurrentRoute] = useState<'home' | 'dashboard'>(() => {
+    if (typeof window === 'undefined') return 'home'
+    return window.location.hash === '#dashboard' ? 'dashboard' : 'home'
+  })
 
   useEffect(() => {
-    getApiHealth()
-      .then((data) => setBackendStatus(`Backend connected: ${data.status}`))
-      .catch(() => setBackendStatus('Backend unavailable'))
+    const onHashChange = () => {
+      setCurrentRoute(window.location.hash === '#dashboard' ? 'dashboard' : 'home')
+    }
+
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
   useEffect(() => {
     if (activeUser) {
       window.localStorage.setItem('bitfurytech-user', JSON.stringify(activeUser))
-      if (window.location.hash !== '#dashboard') {
+      if (currentRoute !== 'dashboard') {
         window.location.hash = '#dashboard'
       }
     } else {
       window.localStorage.removeItem('bitfurytech-user')
-      if (window.location.hash === '#dashboard') {
+      if (currentRoute === 'dashboard') {
         window.history.replaceState(null, '', window.location.pathname)
+        setCurrentRoute('home')
       }
     }
-  }, [activeUser])
+  }, [activeUser, currentRoute])
 
-  const copy = {
-    en: {
-      backend: backendStatus,
-      toggleLabel: 'English',
-      toggleAlt: 'Français',
-    },
-    fr: {
-      backend: backendStatus,
-      toggleLabel: 'Français',
-      toggleAlt: 'English',
-    },
-  } as const
-
-  const showDashboard = activeUser !== null && window.location.hash === '#dashboard'
+  const showDashboard = currentRoute === 'dashboard' && activeUser !== null
 
   return (
     <div className="app-shell">
       <Navbar language={language} setLanguage={setLanguage} />
       <main>
-        <div className="status-banner">{copy[language].backend}</div>
         {!showDashboard ? (
           <>
             <Hero language={language} />
@@ -78,7 +70,10 @@ function App() {
             <FAQ language={language} />
           </>
         ) : (
-          <DashboardView user={activeUser} onLogout={() => setActiveUser(null)} />
+          <DashboardView user={activeUser} onLogout={() => {
+            setActiveUser(null)
+            setCurrentRoute('home')
+          }} />
         )}
       </main>
       <ContactFooter language={language} />
