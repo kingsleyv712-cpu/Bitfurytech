@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import InvestmentModal from './InvestmentModal'
+
 type PlanTierCardProps = {
   title: string
   price: string
@@ -15,25 +18,35 @@ export default function PlanTierCard({
   learnMore,
   investLabel,
 }: PlanTierCardProps) {
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <article className="plan-card">
-      <h3>{title}</h3>
-      <p className="plan-price">{price}</p>
+      <div className="plan-card-top">
+        <div>
+          <h3>{title}</h3>
+          <p className="plan-price">{price}</p>
+        </div>
+        <span className="plan-badge">High potential</span>
+      </div>
       <p>{description}</p>
       <ul>
         {perks.map((perk) => (
           <li key={perk}>{perk}</li>
         ))}
       </ul>
-      <p className="plan-learn-more">{learnMore}</p>
+      <details className="plan-details">
+        <summary>Learn more</summary>
+        <p className="plan-learn-more">{learnMore}</p>
+      </details>
       <div className="plan-actions">
-        <a className="button button-outline" href="#about">
-          Learn More
-        </a>
+        <button type="button" className="button button-outline" onClick={() => setIsOpen(true)}>
+          Invest now
+        </button>
         <a className="button" href="#contact">
           {investLabel}
         </a>
       </div>
+      <InvestmentModal isOpen={isOpen} onClose={() => setIsOpen(false)} plan={title} />
     </article>
   )
 }

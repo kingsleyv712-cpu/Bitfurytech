@@ -1,26 +1,27 @@
 .app-shell {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 20px 18px 48px;
+  padding: 16px 16px 40px;
 }
 
 .status-banner {
-  margin: 0 0 18px;
-  padding: 10px 14px;
+  margin: 0 0 14px;
+  padding: 10px 12px;
   border-radius: 999px;
   background: #fff8c4;
   color: #1d1d1d;
   border: 1px solid #ffd54f;
   display: inline-block;
   font-weight: 600;
+  font-size: 0.95rem;
 }
 
 .site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0 24px;
-  gap: 12px;
+  padding: 8px 0 18px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -69,10 +70,10 @@
 
 .hero-section {
   display: grid;
-  grid-template-columns: 1.4fr 0.9fr;
-  gap: 24px;
+  grid-template-columns: 1.35fr 0.9fr;
+  gap: 20px;
   align-items: center;
-  padding: 24px 0 40px;
+  padding: 18px 0 30px;
 }
 
 .eyebrow {
@@ -100,9 +101,56 @@
 .hero-actions,
 .plan-actions {
   display: flex;
-  gap: 12px;
-  margin-top: 20px;
+  gap: 10px;
+  margin-top: 16px;
   flex-wrap: wrap;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.language-toggle {
+  border: 1px solid #1d4ed8;
+  background: #fff;
+  color: #1d4ed8;
+  border-radius: 999px;
+  padding: 0.5rem 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.trade-review-card,
+.support-card,
+.auth-card {
+  background: #fff;
+  border: 1px solid #dbeafe;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.support-form,
+.investment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.support-form input,
+.support-form textarea,
+.investment-form input {
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem;
+  padding: 0.8rem 0.9rem;
+  font: inherit;
+}
+
+.support-form textarea {
+  min-height: 110px;
+  resize: vertical;
 }
 
 .hero-card,
@@ -110,7 +158,9 @@
 .stat-card,
 .faq-item,
 .testimonial-card,
-.media-card {
+.media-card,
+.auth-card,
+.modal-card {
   background: white;
   border: 1px solid #dbeafe;
   border-radius: 18px;
@@ -139,14 +189,13 @@
 }
 
 .section {
-  padding: 24px 0 32px;
+  padding: 20px 0 28px;
 }
 
 .section-alt {
-  padding: 30px 0 34px;
+  padding: 22px 16px;
   background: linear-gradient(90deg, #fef3c7 0%, #eff6ff 100%);
-  border-radius: 24px;
-  padding-inline: 18px;
+  border-radius: 20px;
 }
 
 .section-heading {
@@ -220,14 +269,41 @@
 .plans-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 14px;
 }
 
 .plan-card {
-  padding: 20px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.plan-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 8px;
+}
+
+.plan-badge {
+  font-size: 0.8rem;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.plan-details {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 8px;
+}
+
+.plan-details summary {
+  cursor: pointer;
+  color: #2563eb;
+  font-weight: 700;
 }
 
 .plan-price {
@@ -273,6 +349,55 @@
   font-weight: 600;
 }
 
+.auth-card {
+  padding: 16px;
+  background: linear-gradient(135deg, #f8fbff, #eff6ff);
+}
+
+.investment-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.investment-form input {
+  flex: 1 1 220px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid #bfdbfe;
+}
+
+.success-text {
+  color: #166534;
+  font-weight: 600;
+}
+
+.error-text {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.62);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  z-index: 50;
+}
+
+.modal-card {
+  width: min(100%, 420px);
+  padding: 18px;
+  background: white;
+}
+
+.modal-close {
+  margin-top: 10px;
+}
+
 .contact-footer {
   margin-top: 24px;
   padding: 24px 18px;
@@ -307,7 +432,15 @@
   .site-header,
   .nav-links,
   .hero-actions,
+  .plan-actions,
   .contact-footer {
     flex-wrap: wrap;
+  }
+
+  .hero-card,
+  .plan-card,
+  .testimonial-card,
+  .media-card {
+    padding: 14px;
   }
 }
