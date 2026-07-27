@@ -3,6 +3,8 @@ type PlanTierCardProps = {
   price: string
   description: string
   perks: string[]
+  learnMore: string
+  investLabel: string
 }
 
 export default function PlanTierCard({
@@ -10,6 +12,8 @@ export default function PlanTierCard({
   price,
   description,
   perks,
+  learnMore,
+  investLabel,
 }: PlanTierCardProps) {
   return (
     <article className="plan-card">
@@ -21,9 +25,15 @@ export default function PlanTierCard({
           <li key={perk}>{perk}</li>
         ))}
       </ul>
-      <a className="button button-outline" href="#top">
-        Select Plan
-      </a>
+      <p className="plan-learn-more">{learnMore}</p>
+      <div className="plan-actions">
+        <a className="button button-outline" href="#about">
+          Learn More
+        </a>
+        <a className="button" href="#contact">
+          {investLabel}
+        </a>
+      </div>
     </article>
   )
 }

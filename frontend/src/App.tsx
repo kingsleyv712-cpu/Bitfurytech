@@ -5,7 +5,10 @@ import Hero from './components/Hero'
 import About from './components/About'
 import WhyChooseUs from './components/WhyChooseUs'
 import Plans from './components/Plans'
+import Testimonials from './components/Testimonials'
+import CompanyVideoSection from './components/CompanyVideoSection'
 import FAQ from './components/FAQ'
+import ContactFooter from './components/ContactFooter'
 import { getApiHealth } from './services/api'
 
 function App() {
@@ -26,8 +29,11 @@ function App() {
         <About />
         <WhyChooseUs />
         <Plans />
+        <Testimonials />
+        <CompanyVideoSection />
         <FAQ />
       </main>
+      <ContactFooter />
     </div>
   )
 }
