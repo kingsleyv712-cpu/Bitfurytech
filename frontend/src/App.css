@@ -361,11 +361,41 @@
   margin-bottom: 10px;
 }
 
+.auth-form {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.auth-switcher {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
 .investment-form input {
   flex: 1 1 220px;
   padding: 10px 12px;
   border-radius: 999px;
   border: 1px solid #bfdbfe;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #1d4ed8;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 0.25rem;
+}
+
+.dashboard-preview {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  border-radius: 0.9rem;
+  background: #eff6ff;
+  display: grid;
+  gap: 0.3rem;
 }
 
 .success-text {
