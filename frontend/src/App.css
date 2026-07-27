@@ -60,12 +60,39 @@
   background: linear-gradient(135deg, #1d4ed8, #2563eb);
   color: white;
   font-weight: 600;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.18);
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 14px 24px rgba(37, 99, 235, 0.25);
 }
 
 .button-outline {
   background: transparent;
   border: 1px solid #1d4ed8;
   color: #1d4ed8;
+}
+
+.button-outline:hover,
+.button-outline:focus-visible {
+  background: #eff6ff;
+}
+
+.language-toggle,
+.link-button {
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.language-toggle:hover,
+.language-toggle:focus-visible,
+.link-button:hover,
+.link-button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.16);
 }
 
 .hero-section {
