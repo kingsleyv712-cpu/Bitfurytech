@@ -1,35 +1,148 @@
+import React, { useEffect, useRef } from "react";
+
 type TradeReviewSectionProps = {
-  language: 'en' | 'fr'
-}
+  language: "en" | "fr";
+};
 
 const copy = {
   en: {
-    eyebrow: 'Trade view review',
-    title: 'A market perspective that keeps your strategy grounded.',
-    body: 'Our trade view review highlights where capital is being allocated, how we evaluate opportunity, and where discipline matters most in shifting markets.',
-    stat: 'Weekly market briefings',
+    eyebrow: "Market Overview",
+    title: "Global Financial Market Overview",
+    body:
+      "Stay informed with live financial market data covering global indices, cryptocurrencies, forex, and commodities. Our market overview helps investors monitor trends and make informed investment decisions.",
   },
-  fr: {
-    eyebrow: 'Analyse de vue commerciale',
-    title: 'Une perspective de marché qui maintient votre stratégie solide.',
-    body: 'Notre revue de vue commerciale met en lumière où le capital est alloué, comment nous évaluons les opportunités et où la discipline compte le plus dans un marché en mouvement.',
-    stat: 'Briefings de marché hebdomadaires',
-  },
-}
 
-export default function TradeReviewSection({ language }: TradeReviewSectionProps) {
-  const t = copy[language]
+  fr: {
+    eyebrow: "Aperçu du marché",
+    title: "Aperçu des marchés financiers mondiaux",
+    body:
+      "Restez informé grâce aux données financières en direct couvrant les indices mondiaux, les cryptomonnaies, le Forex et les matières premières. Notre aperçu du marché aide les investisseurs à suivre les tendances et à prendre des décisions éclairées.",
+  },
+};
+
+export default function TradeReviewSection({
+  language,
+}: TradeReviewSectionProps) {
+  const t = copy[language];
+
+  const container = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!container.current) return;
+
+    container.current.innerHTML = "";
+
+    const script = document.createElement("script");
+
+    script.src =
+      "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js";
+
+    script.type = "text/javascript";
+    script.async = true;
+
+    script.innerHTML = JSON.stringify({
+      colorTheme: "light",
+      dateRange: "12M",
+      showChart: true,
+      locale: language === "fr" ? "fr" : "en",
+      largeChartUrl: "",
+      isTransparent: false,
+      showSymbolLogo: true,
+      showFloatingTooltip: true,
+      width: "100%",
+      height: "650",
+
+      tabs: [
+        {
+          title: "Indices",
+          symbols: [
+            {
+              s: "FOREXCOM:SPXUSD",
+              d: "S&P 500",
+            },
+            {
+              s: "FOREXCOM:NSXUSD",
+              d: "Nasdaq 100",
+            },
+            {
+              s: "FOREXCOM:DJI",
+              d: "Dow Jones",
+            },
+          ],
+        },
+
+        {
+          title: "Crypto",
+          symbols: [
+            {
+              s: "BINANCE:BTCUSDT",
+              d: "Bitcoin",
+            },
+            {
+              s: "BINANCE:ETHUSDT",
+              d: "Ethereum",
+            },
+            {
+              s: "BINANCE:BNBUSDT",
+              d: "BNB",
+            },
+            {
+              s: "BINANCE:XRPUSDT",
+              d: "XRP",
+            },
+          ],
+        },
+
+        {
+          title: "Forex",
+          symbols: [
+            { s: "FX:EURUSD" },
+            { s: "FX:GBPUSD" },
+            { s: "FX:USDJPY" },
+          ],
+        },
+
+        {
+          title: "Commodities",
+          symbols: [
+            {
+              s: "TVC:GOLD",
+              d: "Gold",
+            },
+            {
+              s: "TVC:SILVER",
+              d: "Silver",
+            },
+            {
+              s: "TVC:USOIL",
+              d: "Crude Oil",
+            },
+          ],
+        },
+      ],
+    });
+
+    container.current.appendChild(script);
+  }, [language]);
 
   return (
-    <section className="section" id="insights">
-      <div className="section-heading">
-        <p className="eyebrow">{t.eyebrow}</p>
-        <h2>{t.title}</h2>
-      </div>
-      <div className="trade-review-card">
-        <p>{t.body}</p>
-        <strong>{t.stat}</strong>
+    <section className="market-overview" id="insights">
+      <div className="container">
+
+        <div className="section-heading">
+          <p className="eyebrow">{t.eyebrow}</p>
+
+          <h2>{t.title}</h2>
+
+          <p>{t.body}</p>
+        </div>
+
+        <div
+          className="tradingview-widget-container"
+          ref={container}
+        ></div>
+
       </div>
     </section>
-  )
+  );
 }
