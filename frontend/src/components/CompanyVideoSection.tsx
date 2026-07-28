@@ -1,45 +1,48 @@
 type CompanyVideoSectionProps = {
-  language: 'en' | 'fr'
-}
+  language: "en" | "fr";
+};
 
 const copy = {
   en: {
-    eyebrow: 'Company media',
-    title: 'See how Bitfurytech builds value across markets.',
-    card1Title: 'Our operating model',
-    card1Body: 'We combine market research, risk controls, and portfolio management to support long-term investor value.',
-    card2Title: 'Board and leadership',
-    card2Body: 'Our leadership team oversees strategy, compliance, and capital deployment across all investment verticals.',
+    eyebrow: "Company Media",
+    title: "See how BitfuryTech builds value across global markets.",
+    description:
+      "Watch our official company presentation to learn more about our investment philosophy, services, and long-term vision.",
   },
   fr: {
-    eyebrow: 'Médias de l’entreprise',
-    title: 'Découvrez comment Bitfurytech crée de la valeur sur les marchés.',
-    card1Title: 'Notre modèle opérationnel',
-    card1Body: 'Nous combinons recherche de marché, contrôles de risque et gestion de portefeuille pour soutenir la valeur à long terme des investisseurs.',
-    card2Title: 'Conseil d’administration et direction',
-    card2Body: 'Notre équipe dirigeante supervise la stratégie, la conformité et le déploiement du capital sur toutes les verticales d’investissement.',
+    eyebrow: "Médias de l'entreprise",
+    title: "Découvrez comment BitfuryTech crée de la valeur sur les marchés mondiaux.",
+    description:
+      "Regardez notre présentation officielle pour découvrir notre philosophie d'investissement, nos services et notre vision à long terme.",
   },
-}
+};
 
-export default function CompanyVideoSection({ language }: CompanyVideoSectionProps) {
-  const t = copy[language]
+export default function CompanyVideoSection({
+  language,
+}: CompanyVideoSectionProps) {
+  const t = copy[language];
 
   return (
     <section className="section" id="media">
       <div className="section-heading">
         <p className="eyebrow">{t.eyebrow}</p>
         <h2>{t.title}</h2>
+        <p>{t.description}</p>
       </div>
+
       <div className="media-grid">
         <div className="media-card">
-          <h3>{t.card1Title}</h3>
-          <p>{t.card1Body}</p>
-        </div>
-        <div className="media-card">
-          <h3>{t.card2Title}</h3>
-          <p>{t.card2Body}</p>
+          <iframe
+            width="100%"
+            height="500"
+            src="https://www.youtube.com/embed/QYE14pQ6NeQ"
+            title="BitfuryTech Company Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
     </section>
-  )
+  );
 }
