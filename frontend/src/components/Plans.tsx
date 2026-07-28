@@ -1,94 +1,201 @@
-import PlanTierCard from './PlanTierCard'
+import { useState } from "react";
 
 type PlansProps = {
-  language: 'en' | 'fr'
-}
+  language: "en" | "fr";
+};
 
 const plans = {
   en: [
     {
-      title: 'Real Estate',
-      price: '$5,000+',
-      description: 'We acquire income-generating properties, optimize occupancy, and distribute rental income to investors.',
-      perks: ['Property acquisition', 'Rental yield distribution', 'Risk-managed exits'],
-      learnMore: 'Our real estate plan combines selective acquisition, active management, and long-term appreciation to deliver steady income and capital growth.',
-      investLabel: 'Invest in Real Estate',
+      id: 1,
+      title: "Real Estate",
+      image: "/images/plans/real-estate.jpg",
+      subtitle: "Building Wealth Through Premium Properties",
+
+      overview:
+        "BitfuryTech's Real Estate Investment Plan gives investors access to professionally selected residential, commercial, hospitality and industrial properties located in high-growth markets. Every property undergoes comprehensive legal, financial and market analysis before acquisition.",
+
+      income:
+        "Investor returns are generated through rental income, commercial leasing, property appreciation, strategic development projects, property resale and carefully managed refinancing opportunities.",
+
+      benefits: [
+        "Passive rental income",
+        "Professional property management",
+        "Capital appreciation",
+        "Diversified property portfolio",
+        "Long-term wealth creation",
+      ],
     },
+
     {
-      title: 'Stocks',
-      price: '$3,000+',
-      description: 'Capital is allocated across diversified listed equities with balanced growth and defensive positioning.',
-      perks: ['Blue-chip exposure', 'Dividend income', 'Quarterly reviews'],
-      learnMore: 'The stocks strategy blends market research, sector diversification, and disciplined rebalancing to preserve capital while seeking strong returns.',
-      investLabel: 'Invest in Stocks',
+      id: 2,
+      title: "Stocks",
+      image: "/images/plans/stocks.jpg",
+      subtitle: "Global Equity Investment",
+
+      overview:
+        "Our Stocks Investment Plan provides diversified exposure to carefully selected global companies across technology, finance, healthcare, energy, manufacturing and consumer sectors.",
+
+      income:
+        "Returns are generated through capital appreciation, dividend income, disciplined portfolio management, sector diversification and continuous market analysis.",
+
+      benefits: [
+        "Blue-chip companies",
+        "Dividend income",
+        "Professional portfolio management",
+        "Quarterly reviews",
+        "Long-term capital growth",
+      ],
     },
+
     {
-      title: 'Agriculture',
-      price: '$2,500+',
-      description: 'We partner on high-yield agricultural projects with measurable production and harvest-based returns.',
-      perks: ['Farm operations', 'Harvest revenue sharing', 'Sustainable practices'],
-      learnMore: 'Agriculture projects generate returns through operational efficiency, commodity management, and long-term supply partnerships.',
-      investLabel: 'Invest in Agriculture',
+      id: 3,
+      title: "Agriculture",
+      image: "/images/plans/agriculture.jpg",
+      subtitle: "Sustainable Agricultural Investments",
+
+      overview:
+        "Invest in commercial agriculture projects including palm oil, rice, cassava, cocoa, livestock and food processing businesses supported by experienced operators.",
+
+      income:
+        "Investor income comes from agricultural production, commodity sales, harvest revenue, processing activities and long-term supply contracts.",
+
+      benefits: [
+        "Commodity-backed assets",
+        "Harvest revenue",
+        "Food production",
+        "Sustainable farming",
+        "Growing global demand",
+      ],
     },
+
     {
-      title: 'Cryptocurrency',
-      price: '$1,000+',
-      description: 'A structured digital asset allocation approach designed to capture growth while managing volatility.',
-      perks: ['BTC and ETH exposure', 'Risk limits', 'Market monitoring'],
-      learnMore: 'The crypto plan is managed through defined allocation bands, active monitoring, and liquidity controls to balance upside potential with risk.',
-      investLabel: 'Invest in Crypto',
+      id: 4,
+      title: "Cryptocurrency",
+      image: "/images/plans/crypto.jpg",
+      subtitle: "Managed Digital Asset Portfolio",
+
+      overview:
+        "Our Cryptocurrency Investment Plan focuses on professionally managed exposure to Bitcoin, Ethereum and carefully selected digital assets using disciplined investment strategies.",
+
+      income:
+        "Returns are generated through long-term appreciation, strategic trading opportunities, portfolio diversification and active market monitoring while maintaining strict risk controls.",
+
+      benefits: [
+        "Bitcoin & Ethereum",
+        "Portfolio diversification",
+        "Risk management",
+        "Blockchain innovation",
+        "Professional monitoring",
+      ],
     },
   ],
-  fr: [
-    {
-      title: 'Immobilier',
-      price: '$5,000+',
-      description: 'Nous acquérons des propriétés génératrices de revenus, optimisons le taux d’occupation et distribuons les loyers aux investisseurs.',
-      perks: ['Acquisition de biens', 'Distribution de rendements locatifs', 'Sorties maîtrisées'],
-      learnMore: 'Notre plan immobilier combine acquisition sélective, gestion active et appréciation à long terme pour générer un revenu régulier et une croissance du capital.',
-      investLabel: 'Investir dans l’immobilier',
-    },
-    {
-      title: 'Actions',
-      price: '$3,000+',
-      description: 'Le capital est alloué à des actions cotées diversifiées avec une croissance équilibrée et une position défensive.',
-      perks: ['Exposition blue-chip', 'Revenus de dividendes', 'Analyses trimestrielles'],
-      learnMore: 'La stratégie actions associe recherche de marché, diversification sectorielle et rééquilibrage discipliné pour préserver le capital tout en recherchant de solides rendements.',
-      investLabel: 'Investir dans les actions',
-    },
-    {
-      title: 'Agriculture',
-      price: '$2,500+',
-      description: 'Nous collaborons à des projets agricoles à haut rendement avec des retours mesurables basés sur la production et la récolte.',
-      perks: ['Opérations agricoles', 'Partage des revenus de récolte', 'Pratiques durables'],
-      learnMore: 'Les projets agricoles génèrent des rendements grâce à l’efficacité opérationnelle, la gestion des matières premières et des partenariats d’approvisionnement à long terme.',
-      investLabel: 'Investir dans l’agriculture',
-    },
-    {
-      title: 'Cryptomonnaies',
-      price: '$1,000+',
-      description: 'Une approche structurée d’allocation d’actifs numériques conçue pour capturer la croissance tout en gérant la volatilité.',
-      perks: ['Exposition BTC et ETH', 'Limites de risque', 'Suivi du marché'],
-      learnMore: 'Le plan crypto est géré via des bandes d’allocation définies, un suivi actif et des contrôles de liquidité pour équilibrer potentiel de hausse et risque.',
-      investLabel: 'Investir dans les cryptomonnaies',
-    },
-  ],
-}
+
+  fr: [],
+};
 
 export default function Plans({ language }: PlansProps) {
-  const items = plans[language]
+  const items = plans.en;
+
+  const [selectedPlan, setSelectedPlan] = useState<any>(null);
 
   return (
     <section className="section" id="plans">
       <div className="section-heading">
-        <p className="eyebrow">{language === 'en' ? 'Investment plans' : 'Plans d’investissement'}</p>
-        <h2>{language === 'en' ? 'Choose a plan built for sustainable returns.' : 'Choisissez un plan pensé pour des rendements durables.'}</h2>
+        <p className="eyebrow">Investment Plans</p>
+
+        <h2>Diversify Your Investments With Confidence</h2>
+
+        <p>
+          Explore professionally managed investment opportunities across Real
+          Estate, Stocks, Agriculture and Cryptocurrency.
+        </p>
       </div>
+
       <div className="plans-grid">
         {items.map((plan) => (
-          <PlanTierCard key={plan.title} {...plan} />
+          <div className="plan-card" key={plan.id}>
+            <img src={plan.image} alt={plan.title} />
+
+            <h3>{plan.title}</h3>
+
+            <p>{plan.subtitle}</p>
+
+            <div className="plan-actions">
+              <button
+                className="button button-outline"
+                onClick={() => setSelectedPlan(plan)}
+              >
+                Learn More
+              </button>
+
+              <a className="button" href="/register">
+                Invest Now
+              </a>
+            </div>
+          </div>
         ))}
       </div>
+
+      {selectedPlan && (
+        <div
+          className="modal-backdrop"
+          onClick={() => setSelectedPlan(null)}
+        >
+          <div
+            className="modal-card"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={selectedPlan.image}
+              alt={selectedPlan.title}
+              style={{
+                width: "100%",
+                borderRadius: "16px",
+                marginBottom: "20px",
+              }}
+            />
+
+            <h2>{selectedPlan.title}</h2>
+
+            <h3>Overview</h3>
+
+            <p>{selectedPlan.overview}</p>
+
+            <h3 style={{ marginTop: "20px" }}>
+              How BitfuryTech Generates Returns
+            </h3>
+
+            <p>{selectedPlan.income}</p>
+
+            <h3 style={{ marginTop: "20px" }}>
+              Benefits
+            </h3>
+
+            <ul>
+              {selectedPlan.benefits.map((benefit: string) => (
+                <li key={benefit}>{benefit}</li>
+              ))}
+            </ul>
+
+            <div
+              className="plan-actions"
+              style={{ marginTop: "30px" }}
+            >
+              <a className="button" href="/register">
+                Invest Now
+              </a>
+
+              <button
+                className="button button-outline"
+                onClick={() => setSelectedPlan(null)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
-  )
+  );
 }
