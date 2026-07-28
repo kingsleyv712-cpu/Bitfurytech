@@ -1,52 +1,45 @@
-import { useState } from 'react'
-import InvestmentModal from './InvestmentModal'
-
 type PlanTierCardProps = {
-  title: string
-  price: string
-  description: string
-  perks: string[]
-  learnMore: string
-  investLabel: string
-}
+  title: string;
+  image: string;
+  subtitle: string;
+  onLearnMore: () => void;
+};
 
 export default function PlanTierCard({
   title,
-  price,
-  description,
-  perks,
-  learnMore,
-  investLabel,
+  image,
+  subtitle,
+  onLearnMore,
 }: PlanTierCardProps) {
-  const [isOpen, setIsOpen] = useState(false)
   return (
     <article className="plan-card">
-      <div className="plan-card-top">
-        <div>
-          <h3>{title}</h3>
-          <p className="plan-price">{price}</p>
+      <div className="plan-image-wrapper">
+        <img
+          src={image}
+          alt={title}
+          className="plan-image"
+          loading="lazy"
+        />
+      </div>
+
+      <div className="plan-content">
+        <h3>{title}</h3>
+
+        <p>{subtitle}</p>
+
+        <div className="plan-actions">
+          <button
+            className="button button-outline"
+            onClick={onLearnMore}
+          >
+            Learn More
+          </button>
+
+          <a href="/register" className="button">
+            Invest Now
+          </a>
         </div>
-        <span className="plan-badge">High potential</span>
       </div>
-      <p>{description}</p>
-      <ul>
-        {perks.map((perk) => (
-          <li key={perk}>{perk}</li>
-        ))}
-      </ul>
-      <details className="plan-details">
-        <summary>Learn more</summary>
-        <p className="plan-learn-more">{learnMore}</p>
-      </details>
-      <div className="plan-actions">
-        <button type="button" className="button button-outline" onClick={() => setIsOpen(true)}>
-          Invest now
-        </button>
-        <a className="button" href="#contact">
-          {investLabel}
-        </a>
-      </div>
-      <InvestmentModal isOpen={isOpen} onClose={() => setIsOpen(false)} plan={title} />
     </article>
-  )
+  );
 }
