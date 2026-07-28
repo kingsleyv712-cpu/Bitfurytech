@@ -1,3 +1,4 @@
+import PlanTierCard from "./PlanTierCard";
 import { useState } from "react";
 
 type PlansProps = {
