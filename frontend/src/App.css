@@ -85,52 +85,74 @@ img{
 
 /* ---------- Buttons ---------- */
 
-.button{
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
+    padding: 14px 26px;
 
-    padding:14px 26px;
+    border: none;
+    border-radius: 999px;
 
-    border:none;
+    cursor: pointer;
 
-    border-radius:999px;
+    font-weight: 700;
+    font-size: 1rem;
 
-    cursor:pointer;
+    color: white;
 
-    font-weight:700;
+    background: linear-gradient(
+        135deg,
+        var(--accent),
+        var(--accent-hover)
+    );
 
-    color:white;
+    box-shadow: var(--shadow);
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--accent),
-            var(--accent-hover)
-        );
-
-    box-shadow:var(--shadow);
-
-    transition:all .35s ease;
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        background .35s ease;
 }
-
-.button:hover{
+    
+.button:hover {
 
     transform:
-        translateY(-3px);
+        translateY(-4px)
+        scale(1.03);
 
     box-shadow:
-        var(--shadow-hover);
+        0 18px 35px rgba(29,78,216,.25);
+
+}
+.button:active {
+
+    transform:
+        translateY(1px)
+        scale(.98);
+
+}
+.button:focus-visible {
+
+    outline: none;
+
+    box-shadow:
+        0 0 0 4px rgba(29,78,216,.18),
+        var(--shadow);
+
 }
 
 .button-outline{
 
-    background:transparent;
+    background:white;
 
     color:var(--accent);
 
     border:2px solid var(--accent);
+
+    transition:all .35s ease;
+
 }
 
 .button-outline:hover{
@@ -138,6 +160,47 @@ img{
     background:var(--accent);
 
     color:white;
+
+    transform:translateY(-4px);
+
+}
+.button{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.button::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent
+    );
+
+    transition:left .8s ease;
+
+}
+
+.button:hover::before{
+
+    left:130%;
+
 }
 
 /* ---------- App Shell ---------- */
