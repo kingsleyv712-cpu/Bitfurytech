@@ -965,6 +965,20 @@ padding:22px;
 
 }
 
+.media-card iframe {
+    width: 100%;
+    height: 520px;
+    border: none;
+    border-radius: 20px;
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .media-card iframe {
+        height: 260px;
+    }
+}
+   
 }
 /* ==========================================================
    PART 4 – INVESTMENT PLANS
