@@ -1,61 +1,121 @@
 type HeroProps = {
-  language: 'en' | 'fr'
-}
+  language: "en" | "fr";
+};
 
 const copy = {
   en: {
-    eyebrow: 'Diversify asset management company',
-    title: 'Build lasting wealth through disciplined strategy.',
-    lead: 'We blend traditional capital preservation with modern market opportunities, giving clients a resilient path toward long-term growth.',
-    primary: 'View Investment Plans',
-    secondary: 'Learn More',
-    cardTitle: 'Portfolio Performance',
-    bullet1: 'Research-led allocations',
-    bullet2: 'Secure, transparent reporting',
-    bullet3: 'Professional advisory support',
+    eyebrow: "Building Wealth • Securing Futures",
+
+    title: "Invest Smarter. Grow Wealth. Build Your Financial Future.",
+
+    lead:
+      "BitfuryTech Investment provides secure and diversified investment opportunities across Cryptocurrency, Real Estate, Agriculture, and Global Stocks. Our mission is to help investors build sustainable wealth through disciplined strategies, transparency, and innovation.",
+
+    primary: "Start Investing",
+
+    secondary: "Explore Our Company",
+
+    cardTitle: "Portfolio Performance",
+
+    performance: "+18.4% YTD",
+
+    bullet1: "✔ Diversified Investment Portfolio",
+
+    bullet2: "✔ Real-Time Market Intelligence",
+
+    bullet3: "✔ Secure Asset Management",
+
+    bullet4: "✔ Transparent Daily Reporting",
+
+    bullet5: "✔ Global Investment Opportunities",
   },
+
   fr: {
-    eyebrow: 'Société de gestion d’actifs diversifiée',
-    title: 'Construisez une richesse durable grâce à une stratégie disciplinée.',
-    lead: 'Nous combinons la préservation du capital avec des opportunités de marché modernes pour offrir à nos clients une voie résiliente vers une croissance durable.',
-    primary: 'Voir les plans d’investissement',
-    secondary: 'En savoir plus',
-    cardTitle: 'Performance du portefeuille',
-    bullet1: 'Allocations guidées par la recherche',
-    bullet2: 'Rapports sécurisés et transparents',
-    bullet3: 'Soutien conseil professionnel',
+    eyebrow: "Construire la richesse • Sécuriser l'avenir",
+
+    title:
+      "Investissez intelligemment. Développez votre patrimoine. Construisez votre avenir financier.",
+
+    lead:
+      "BitfuryTech Investment offre des opportunités d'investissement sécurisées et diversifiées dans les cryptomonnaies, l'immobilier, l'agriculture et les actions internationales. Notre mission est d'aider les investisseurs à bâtir un patrimoine durable grâce à la transparence, à l'innovation et à des stratégies disciplinées.",
+
+    primary: "Commencer à investir",
+
+    secondary: "Découvrir notre entreprise",
+
+    cardTitle: "Performance du portefeuille",
+
+    performance: "+18.4% YTD",
+
+    bullet1: "✔ Portefeuille diversifié",
+
+    bullet2: "✔ Intelligence des marchés en temps réel",
+
+    bullet3: "✔ Gestion sécurisée des actifs",
+
+    bullet4: "✔ Rapports transparents",
+
+    bullet5: "✔ Opportunités mondiales d'investissement",
   },
-}
+};
 
 export default function Hero({ language }: HeroProps) {
-  const t = copy[language]
+  const t = copy[language];
 
   return (
     <section className="hero-section" id="top">
+      {/* Left Side */}
       <div className="hero-copy">
+
         <p className="eyebrow">{t.eyebrow}</p>
-        <h1>{t.title}</h1>
+
+        <h1>
+          {t.title}
+        </h1>
+
         <p className="lead">{t.lead}</p>
+
         <div className="hero-actions">
+
           <a className="button" href="#plans">
             {t.primary}
           </a>
+
           <a className="button button-outline" href="#about">
             {t.secondary}
           </a>
+
         </div>
       </div>
-      <div className="hero-card" aria-label="Company performance overview">
+
+      {/* Right Side */}
+      <div
+        className="hero-card"
+        aria-label="BitfuryTech Portfolio Overview"
+      >
         <div className="hero-card-top">
+
           <span>{t.cardTitle}</span>
-          <strong>+18.4% YTD</strong>
+
+          <strong>{t.performance}</strong>
+
         </div>
+
         <ul>
+
           <li>{t.bullet1}</li>
+
           <li>{t.bullet2}</li>
+
           <li>{t.bullet3}</li>
+
+          <li>{t.bullet4}</li>
+
+          <li>{t.bullet5}</li>
+
         </ul>
+
       </div>
     </section>
-  )
+  );
 }
