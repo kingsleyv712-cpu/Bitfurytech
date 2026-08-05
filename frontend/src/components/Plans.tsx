@@ -1,6 +1,5 @@
-import PlanTierCard from "./PlanTierCard";
 import { useState } from "react";
-
+import PlanTierCard from "./PlanTierCard";
 type PlansProps = {
   language: "en" | "fr";
 };
