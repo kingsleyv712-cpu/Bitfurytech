@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Local SQLite database (runtime artifact)
+backend/bitfurytech.db
+
+# Node
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Logs
+*.log
+
+# Env
+.env
+.env.*.local
+
+# Editor / OS
+.DS_Store
+.vscode/*
+.idea/

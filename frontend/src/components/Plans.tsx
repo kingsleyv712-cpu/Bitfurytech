@@ -1,5 +1,36 @@
 import { useState } from "react";
 
+type PlansProps = {
+  language: "en" | "fr";
+};
+
+const copy = {
+  en: {
+    eyebrow: "Investment Plans",
+    title: "Diversify Your Investments With Confidence",
+    description:
+      "Explore professionally managed investment opportunities across Real Estate, Stocks, Agriculture and Cryptocurrency.",
+    learnMore: "Learn More",
+    investNow: "Invest Now",
+    overview: "Overview",
+    returns: "How BitfuryTech Generates Returns",
+    benefits: "Benefits",
+    close: "Close",
+  },
+  fr: {
+    eyebrow: "Plans d'investissement",
+    title: "Diversifiez vos investissements en toute confiance",
+    description:
+      "Découvrez des opportunités d'investissement gérées par des professionnels dans l'immobilier, les actions, l'agriculture et les cryptomonnaies.",
+    learnMore: "En savoir plus",
+    investNow: "Investir maintenant",
+    overview: "Aperçu",
+    returns: "Comment BitfuryTech génère des rendements",
+    benefits: "Avantages",
+    close: "Fermer",
+  },
+};
+
 const plans = [
   {
     id: 1,
@@ -86,20 +117,18 @@ const plans = [
   },
 ];
 
-export default function Plans() {
+export default function Plans({ language }: PlansProps) {
   const [selectedPlan, setSelectedPlan] = useState<any>(null);
+  const t = copy[language];
 
   return (
     <section className="section" id="plans">
       <div className="section-heading">
-        <p className="eyebrow">Investment Plans</p>
+        <p className="eyebrow">{t.eyebrow}</p>
 
-        <h2>Diversify Your Investments With Confidence</h2>
+        <h2>{t.title}</h2>
 
-        <p>
-          Explore professionally managed investment opportunities across Real
-          Estate, Stocks, Agriculture and Cryptocurrency.
-        </p>
+        <p>{t.description}</p>
       </div>
 
       <div className="plans-grid">
@@ -116,11 +145,11 @@ export default function Plans() {
                 className="button button-outline"
                 onClick={() => setSelectedPlan(plan)}
               >
-                Learn More
+                {t.learnMore}
               </button>
 
               <a className="button" href="/register">
-                Invest Now
+                {t.investNow}
               </a>
             </div>
           </div>
@@ -148,18 +177,18 @@ export default function Plans() {
 
             <h2>{selectedPlan.title}</h2>
 
-            <h3>Overview</h3>
+            <h3>{t.overview}</h3>
 
             <p>{selectedPlan.overview}</p>
 
             <h3 style={{ marginTop: "20px" }}>
-              How BitfuryTech Generates Returns
+              {t.returns}
             </h3>
 
             <p>{selectedPlan.income}</p>
 
             <h3 style={{ marginTop: "20px" }}>
-              Benefits
+              {t.benefits}
             </h3>
 
             <ul>
@@ -173,14 +202,14 @@ export default function Plans() {
               style={{ marginTop: "30px" }}
             >
               <a className="button" href="/register">
-                Invest Now
+                {t.investNow}
               </a>
 
               <button
                 className="button button-outline"
                 onClick={() => setSelectedPlan(null)}
               >
-                Close
+                {t.close}
               </button>
             </div>
           </div>
